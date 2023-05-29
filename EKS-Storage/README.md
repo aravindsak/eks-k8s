@@ -1,6 +1,4 @@
-# EBS Storage
-
-This YAML file describes a Kubernetes StorageClass resource for the EBS CSI driver. Let's break down each step:
+# EkS Storage
 
 # Storage Class in Kubernetes
 
@@ -30,8 +28,6 @@ Storage classes abstract the underlying storage infrastructure, allowing adminis
 
 Feel free to explore the additional resources to gain a deeper understanding of storage classes in Kubernetes and how they can be used in your applications.
 
-
-## StorageClass 
 
 ```yaml
 apiVersion: storage.k8s.io/v1

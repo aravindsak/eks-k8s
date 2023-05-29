@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql
+spec:
+  selector:
+    app: mysql # traffic to the pod name = mysql
+  ports:
+    - port: 3306
+  clusterIP: None
