@@ -1,4 +1,4 @@
-# EBS CSI Driver StorageClass YAML
+# EBS Storage
 
 This YAML file describes a Kubernetes StorageClass resource for the EBS CSI driver. Let's break down each step:
 
