@@ -54,3 +54,52 @@ provisioner: ebs.csi.aws.com: Indicates the provisioner responsible for provisio
 **volumeBindingMode: WaitForFirstConsumer:** Defines the binding mode for the volumes created by this StorageClass. The "WaitForFirstConsumer" mode means that the volume will be provisioned when the first pod using it is scheduled.
 
 Overall, this YAML file sets up a StorageClass named "ebs-sc" that uses the EBS CSI driver provisioner. It specifies that the volume binding should wait until the first consumer (pod) is scheduled before provisioning the volume.
+
+# Persistent Volume Claim (PVC) 
+
+A Persistent Volume Claim (PVC) is a Kubernetes resource used to request storage resources from a storage provider in a cluster. PVCs are used to dynamically provision and manage Persistent Volumes (PVs) in Kubernetes. PVs represent actual storage resources such as disks, volumes, or network storage.
+
+To create a PVC, you need to define a YAML file that describes the PVC object. Here's an example of a basic PVC definition:
+
+```yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: my-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+```
+In this example, the PVC is named "my-pvc" and requests 10 gigabytes of storage. The accessModes field specifies the desired access mode for the PVC, which can be ReadWriteOnce, ReadOnlyMany, or ReadWriteMany, indicating whether the volume can be accessed by a single node, multiple nodes, or in read-only mode.
+
+# ConfigMap
+
+An EKS ConfigMap is a Kubernetes resource used to store non-sensitive configuration data that can be consumed by applications running on Amazon Elastic Kubernetes Service (EKS). ConfigMaps are key-value pairs and provide a way to decouple configuration data from the application code, allowing for easier management and modification of configuration settings without redeploying the application.
+
+To create an EKS ConfigMap, you need to define a YAML file that describes the ConfigMap object. Here's an example of a basic ConfigMap definition:
+
+```yaml
+Copy code
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: my-configmap
+data:
+  key1: value1
+  key2: value2
+```
+In this example, the ConfigMap is named "my-configmap" and contains two key-value pairs: "key1" with the value "value1" and "key2" with the value "value2". You can add more key-value pairs as needed.
+
+To create the ConfigMap using the YAML file, you can use the kubectl command-line tool or apply the YAML directly to your EKS cluster. Here's an example of using kubectl:
+
+shell
+Copy code
+kubectl apply -f configmap.yaml
+Replace configmap.yaml with the path to your ConfigMap YAML file.
+
+Once the ConfigMap is created, applications running in the EKS cluster can access the configuration data by referencing the keys defined in the ConfigMap. For example, an application can read the value of "key1" by accessing the environment variable MY_CONFIGMAP_NAMESPACE_key1.
+
+You can also mount the ConfigMap as a volume in a container and read the configuration data from files. This allows for more flexibility in how applications consume the ConfigMap data.
